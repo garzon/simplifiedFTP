@@ -1,10 +1,10 @@
 import socket, thread, sys, connection, os, os.path
 
-auth_settings = ['username', 'password']
-
-if len(sys.argv) <= 1:
-    print 'Usage: python simplifiedFtpServer.py <port>'
+if len(sys.argv) <= 3:
+    print 'Usage: python simplifiedFtpServer.py <port> <username> <password>'
     exit()
+    
+auth_settings = [sys.argv[2], sys.argv[3]]
     
 def parse_cmd(cmd_string):
     STH_STRANGE = '!@#$%^&*&^%$#@'
@@ -96,6 +96,7 @@ def server_handler(s, addr):
                 continue
             if (not os.path.isfile(args[0]) and not os.path.isdir(args[0])) or (os.path.isfile(args[0]) and len(args) > 2 and args[2] == 'force'):
                 try:
+                    c.send_line('OK::waiting::%d' % file_len)
                     recv = c.recvn(file_len)
                 except socket.timeout:
                     c.send_line('ERR::operation put timeout')
