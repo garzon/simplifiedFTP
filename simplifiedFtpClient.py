@@ -30,7 +30,7 @@ def parse_bytes_stream_mode(header, c):
     if ret == 'ERR':
         print 'ERR::' + '::'.join(ret_args)
         return
-    if ret == 'OK' and len(ret_args) == 2 and ret_args[1] == 'sending':
+    if ret == 'OK' and len(ret_args) == 2 and ret_args[0] == 'sending':
         try:
             file_len = int(ret_args[1])
             if file_len < 0: raise Exception
@@ -38,7 +38,7 @@ def parse_bytes_stream_mode(header, c):
             print 'ERR::Invalid response - Len: ' + ret_args[1]
             return
     else:
-        print 'ERR::Invalid response - ' + recv
+        print 'ERR::Invalid response - ' + header
         return
     body = c.recvn(file_len)
     if is_verbose_mode: print '> (%d bytes received)' % file_len
@@ -82,7 +82,7 @@ def client_handler(c):
         if not (body is None):
             with open(args[1], 'wb') as f:
                 f.write(body)
-        print 'OK::%d bytes written to %s' % (len(body), args[1])
+            print 'OK::%d bytes written to %s' % (len(body), args[1])
         return True
         
     if cmd == 'uploadto':

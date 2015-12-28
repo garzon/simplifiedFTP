@@ -271,3 +271,103 @@ def
 
 sFTP@localhost:8895::/home/garzon/test3:/home/garzon/test2$ bye
 ```
+
+### 实验3：windows客户端与linux服务器交互
+
+```
+D:\simplifiedFTP>python simplifiedFtpClient.py 10.141.246.114 8895 username password
+Welcome to Simplified FTP Server V1.0!
+
+sFTP@10.141.246.114:8895::D:\simplifiedFTP:/home/garzon/test2$ lls
+ 驱动器 D 中的卷是 Data
+ 卷的序列号是 2AAB-319D
+
+ D:\simplifiedFTP 的目录
+
+2015/12/28  20:33    <DIR>          .
+2015/12/28  20:33    <DIR>          ..
+2015/12/28  15:43                11 .gitignore
+2015/12/28  20:12             4,070 connection.py
+2015/12/28  20:33             4,601 connection.pyc
+2015/12/28  20:27            11,098 README.md
+2015/12/28  20:37             6,576 simplifiedFtpClient.py
+2015/12/28  19:56             4,673 simplifiedFtpServer.py
+               6 个文件         31,029 字节
+               2 个目录 15,987,085,312 可用字节
+
+sFTP@10.141.246.114:8895::D:\simplifiedFTP:/home/garzon/test2$ ls
+> (580 bytes received)
+鎬荤敤閲?56
+drwxrwxr-x   2 garzon garzon  4096 12鏈?28 20:23 .
+drwxr-xr-x 127 garzon garzon 12288 12鏈?28 20:15 ..
+-rw-r--r--   1 garzon garzon  4070 12鏈?28 20:12 connection.py
+-rw-r--r--   1 garzon garzon  4631 12鏈?28 20:12 connection.pyc
+-rw-rw-r--   1 garzon garzon    10 12鏈?28 20:26 remote2.txt
+-rw-rw-r--   1 garzon garzon     4 12鏈?28 20:25 remoteabc.txt
+-rw-rw-r--   1 garzon garzon     1 12鏈?28 20:16 remote.txt
+-rw-r--r--   1 garzon garzon  6570 12鏈?28 20:21 simplifiedFtpClient.py
+-rw-r--r--   1 garzon garzon  4673 12鏈?28 19:56 simplifiedFtpServer.py
+
+sFTP@10.141.246.114:8895::D:\simplifiedFTP:/home/garzon/test2$ downloadto::remoteabc.txt::windowsabc.txt
+OK::4 bytes written to windowsabc.txt
+sFTP@10.141.246.114:8895::D:\simplifiedFTP:/home/garzon/test2$ lls
+ 驱动器 D 中的卷是 Data
+ 卷的序列号是 2AAB-319D
+
+ D:\simplifiedFTP 的目录
+
+2015/12/28  20:37    <DIR>          .
+2015/12/28  20:37    <DIR>          ..
+2015/12/28  15:43                11 .gitignore
+2015/12/28  20:12             4,070 connection.py
+2015/12/28  20:33             4,601 connection.pyc
+2015/12/28  20:27            11,098 README.md
+2015/12/28  20:37             6,576 simplifiedFtpClient.py
+2015/12/28  19:56             4,673 simplifiedFtpServer.py
+2015/12/28  20:37                 4 windowsabc.txt
+               7 个文件         31,033 字节
+               2 个目录 15,987,085,312 可用字节
+
+sFTP@10.141.246.114:8895::D:\simplifiedFTP:/home/garzon/test2$ downloadto::remote.txt::windowsabc.txt
+windowsabc.txt exists, overwrite? (y/n)
+sdgs
+windowsabc.txt exists, overwrite?(y/n)
+y
+OK::1 bytes written to windowsabc.txt
+sFTP@10.141.246.114:8895::D:\simplifiedFTP:/home/garzon/test2$ lls
+ 驱动器 D 中的卷是 Data
+ 卷的序列号是 2AAB-319D
+
+ D:\simplifiedFTP 的目录
+
+2015/12/28  20:37    <DIR>          .
+2015/12/28  20:37    <DIR>          ..
+2015/12/28  15:43                11 .gitignore
+2015/12/28  20:12             4,070 connection.py
+2015/12/28  20:33             4,601 connection.pyc
+2015/12/28  20:27            11,098 README.md
+2015/12/28  20:37             6,576 simplifiedFtpClient.py
+2015/12/28  19:56             4,673 simplifiedFtpServer.py
+2015/12/28  20:38                 1 windowsabc.txt
+               7 个文件         31,030 字节
+               2 个目录 15,987,085,312 可用字节
+
+sFTP@10.141.246.114:8895::D:\simplifiedFTP:/home/garzon/test2$ uploadto::windowsabc.txt::fromwindows.txt
+OK::Successfully written
+
+sFTP@10.141.246.114:8895::D:\simplifiedFTP:/home/garzon/test2$ ls
+> (646 bytes received)
+鎬荤敤閲?60
+drwxrwxr-x   2 garzon garzon  4096 12鏈?28 20:38 .
+drwxr-xr-x 127 garzon garzon 12288 12鏈?28 20:15 ..
+-rw-r--r--   1 garzon garzon  4070 12鏈?28 20:12 connection.py
+-rw-r--r--   1 garzon garzon  4631 12鏈?28 20:12 connection.pyc
+-rw-rw-r--   1 garzon garzon     1 12鏈?28 20:38 fromwindows.txt
+-rw-rw-r--   1 garzon garzon    10 12鏈?28 20:26 remote2.txt
+-rw-rw-r--   1 garzon garzon     4 12鏈?28 20:25 remoteabc.txt
+-rw-rw-r--   1 garzon garzon     1 12鏈?28 20:16 remote.txt
+-rw-r--r--   1 garzon garzon  6570 12鏈?28 20:21 simplifiedFtpClient.py
+-rw-r--r--   1 garzon garzon  4673 12鏈?28 19:56 simplifiedFtpServer.py
+
+sFTP@10.141.246.114:8895::D:\simplifiedFTP:/home/garzon/test2$ exit
+```
